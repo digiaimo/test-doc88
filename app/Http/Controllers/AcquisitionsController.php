@@ -40,13 +40,17 @@ class AcquisitionsController extends Controller
             $customer = Customer::find($request->customer_id);
 
             if (is_null($customer)) {
-                throw new Exception('Cliente não encontrado!');
+                return response()->json(
+                    'Cliente não encontrado! ',
+                    Response::HTTP_BAD_REQUEST);
             }
 
             $product = Product::find($request->product_id);
 
             if (is_null($product)) {
-                throw new Exception('Produto não encontrado!');
+                return response()->json(
+                    'Produto não encontrado! ',
+                    Response::HTTP_BAD_REQUEST);
             }
 
             $acquisition = Acquisition::create([
