@@ -42,7 +42,7 @@ class ProductController extends Controller
             ]);
 
             return response()->json($product, Response::HTTP_CREATED);
-        } catch (Exception $exception ) {
+        } catch (Exception $exception) {
             return response()->json(
                 'Erro ao cadastrar produto! ',
                 Response::HTTP_BAD_REQUEST
@@ -82,7 +82,6 @@ class ProductController extends Controller
     {
         try {
             $product = Product::findOrFail($id);
-
 
             $product->update([
                 'name' => isset($request->name) ? $request->name : $product->name,

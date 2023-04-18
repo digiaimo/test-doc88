@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
@@ -42,7 +41,7 @@ class MailNotifyAcquisition extends Mailable
     {
         return new Content(
             view: 'emails.email',
-            with:[
+            with: [
                 'data' => $this->data,
             ]
         );

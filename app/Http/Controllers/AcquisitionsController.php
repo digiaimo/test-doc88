@@ -36,7 +36,7 @@ class AcquisitionsController extends Controller
      */
     public function store(StoreAcquisitionsRequest $request): JsonResponse
     {
-        try{
+        try {
             $customer = Customer::find($request->customer_id);
 
             if (is_null($customer)) {
@@ -67,7 +67,7 @@ class AcquisitionsController extends Controller
             Mail::to($customer->email)->send(new MailNotifyAcquisition($data));
 
             return response()->json($acquisition, Response::HTTP_CREATED);
-        }catch(Exception $exception){
+        } catch (Exception $exception) {
             return response()->json(
                 'Erro ao cadastrar pedido! ',
                 Response::HTTP_BAD_REQUEST
@@ -80,11 +80,11 @@ class AcquisitionsController extends Controller
      */
     public function show(string $id): JsonResponse
     {
-        try{
+        try {
             $acquisition = Acquisition::findOrFail($id);
 
             return response()->json($acquisition, Response::HTTP_OK);
-        }catch(Exception $exception){
+        } catch (Exception $exception) {
             return response()->json(
                 'Erro ao buscar pedido! ',
                 Response::HTTP_BAD_REQUEST
@@ -113,13 +113,13 @@ class AcquisitionsController extends Controller
      */
     public function destroy(string $id)
     {
-        try{
+        try {
             $acquisition = Acquisition::findOrFail($id);
 
             $acquisition->delete();
 
             return response()->json([], Response::HTTP_NO_CONTENT);
-        }catch(Exception $exception){
+        } catch (Exception $exception) {
             return response()->json(
                 'Erro ao excluir pedido! ',
                 Response::HTTP_BAD_REQUEST
