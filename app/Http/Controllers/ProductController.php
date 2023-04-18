@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ProductController extends Controller
