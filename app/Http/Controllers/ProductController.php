@@ -6,16 +6,18 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        return "Listagem de produtos";
+        return response()->json(Response::HTTP_OK);
     }
 
     /**
@@ -29,37 +31,40 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(StoreProductRequest $request): JsonResponse
     {
         try {
             $path = $request->file('photo')->store('products');
 
-            Product::create([
+            $product = Product::create([
                 'name' => $request->name,
                 'price' => $request->price,
                 'photo' => $path,
             ]);
 
-            return 'Produto cadastrado com sucesso!';
+            return response()->json($product, Response::HTTP_CREATED);
         } catch (Exception $exception ) {
-            return [
-                "message" => 'Erro ao cadastrar produto! ',
-                "error" => $exception->getMessage()
-            ];
+            return response()->json(
+                'Erro ao cadastrar produto! ',
+                Response::HTTP_BAD_REQUEST
+            );
         }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
         try {
             $product = Product::findOrFail($id);
 
-            return $product;
+            return response()->json($product, Response::HTTP_OK);
         } catch (Exception $exception) {
-            return 'Produto não encontrado!';
+            return response()->json(
+                'Erro ao buscar produto! ',
+                Response::HTTP_BAD_REQUEST
+            );
         }
     }
 
@@ -74,7 +79,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, string $id)
+    public function update(UpdateProductRequest $request, string $id): JsonResponse
     {
         try {
             $product = Product::findOrFail($id);
@@ -86,31 +91,31 @@ class ProductController extends Controller
                 'photo' => isset($request->photo) ? $request->file('photo')->store('products') : $product->photo,
             ]);
 
-            return 'Produto atualizado com sucesso!';
+            return response()->json($product, Response::HTTP_NO_CONTENT);
         } catch (Exception $exception) {
-            return [
-                "message" => 'Erro ao atualizar produto! ',
-                "error" => $exception->getMessage()
-            ];
+            return response()->json(
+                'Erro ao atualizar produto! ',
+                Response::HTTP_BAD_REQUEST
+            );
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
         try {
             $product = Product::findOrFail($id);
 
             $product->delete();
 
-            return 'Produto excluído com sucesso!';
+            return response()->json([], Response::HTTP_NO_CONTENT);
         } catch (Exception $exception) {
-            return [
-              "message" => 'Erro ao excluir produto! ',
-              "error" => $exception->getMessage()
-            ];
+            return response()->json(
+                'Erro ao deletar produto! ',
+                Response::HTTP_BAD_REQUEST
+            );
         }
     }
 }

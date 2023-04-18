@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AcquisitionsController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
@@ -23,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('customer', CustomerController::class);
 Route::resource('product', ProductController::class);
 Route::post('product/{id}', [ProductController::class, 'update']);
+Route::resource('acquisition', AcquisitionsController::class);
