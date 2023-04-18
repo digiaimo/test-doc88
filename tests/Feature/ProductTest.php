@@ -3,11 +3,14 @@
 namespace Tests\Feature;
 
 use App\Models\Product;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class ProductTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test */
     public function test_example(): void
     {

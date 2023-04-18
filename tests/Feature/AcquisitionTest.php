@@ -5,10 +5,13 @@ namespace Tests\Feature;
 use App\Models\Acquisition;
 use App\Models\Customer;
 use App\Models\Product;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class AcquisitionTest extends TestCase
 {
+    use RefreshDatabase;
+    
     /** @test */
     public function test_example(): void
     {
