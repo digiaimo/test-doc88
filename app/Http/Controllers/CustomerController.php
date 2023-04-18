@@ -6,16 +6,18 @@ use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        return 'hello world';
+        return response()->json(Response::HTTP_OK);
     }
 
     /**
@@ -29,10 +31,10 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCustomerRequest $request)
+    public function store(StoreCustomerRequest $request): JsonResponse
     {
         try {
-            Customer::create([
+            $customer = Customer::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
@@ -43,25 +45,29 @@ class CustomerController extends Controller
                 'date_of_birth' => $request->date_of_birth,
             ]);
 
-            return 'Cliente cadastrado com sucesso!';
+            return response()->json($customer, Response::HTTP_CREATED);
         } catch (Exception $exception ) {
-            return [
-                "message" => 'Erro ao cadastrar cliente! ',
-                "error" => $exception->getMessage()
-            ];
+            return response()->json(
+                'Erro ao cadastrar cliente! ',
+                Response::HTTP_BAD_REQUEST
+            );
         }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
         try {
             $customer = Customer::findOrFail($id);
-            return $customer;
+            
+            return response()->json($customer, Response::HTTP_OK);
         } catch (Exception $exception) {
-            return 'Cliente não encontrado!';
+            return response()->json(
+                'Erro ao buscar cliente! ',
+                Response::HTTP_BAD_REQUEST
+            );
         }
     }
 
@@ -76,7 +82,7 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCustomerRequest $request, string $id)
+    public function update(UpdateCustomerRequest $request, string $id): JsonResponse
     {
         try {
             $customer = Customer::findOrFail($id);
@@ -91,30 +97,30 @@ class CustomerController extends Controller
                 'date_of_birth' => isset($request->date_of_birth) ? $request->date_of_birth : $customer->date_of_birth,
             ]);
 
-            return 'Cliente atualizado com sucesso!';
+            return response()->json($customer, Response::HTTP_NO_CONTENT);
         } catch (Exception $exception) {
-            return [
-                "message" => 'Erro ao atualizar cliente! ',
-                "error" => $exception->getMessage()
-            ];
+            return response()->json(
+                'Erro ao atualizar cliente! ',
+                Response::HTTP_BAD_REQUEST
+            );
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
         try {
             $customer = Customer::findOrFail($id);
             $customer->delete();
 
-            return 'Cliente excluído com sucesso!';
+            return response()->json([], Response::HTTP_NO_CONTENT);
         } catch (Exception $exception) {
-            return [
-                "message" => 'Erro ao excluir cliente! ',
-                "error" => $exception->getMessage()
-            ];
+            return response()->json(
+                'Erro ao deletar cliente! ',
+                Response::HTTP_BAD_REQUEST
+            );
         }
     }
 }
