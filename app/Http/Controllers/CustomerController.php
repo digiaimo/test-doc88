@@ -45,7 +45,10 @@ class CustomerController extends Controller
 
             return 'Cliente cadastrado com sucesso!';
         } catch (Exception $exception ) {
-            return 'Erro ao cadastrar cliente! ' . $exception->getMessage();
+            return [
+                "message" => 'Erro ao cadastrar cliente! ',
+                "error" => $exception->getMessage()
+            ];
         }
     }
 
@@ -90,7 +93,10 @@ class CustomerController extends Controller
 
             return 'Cliente atualizado com sucesso!';
         } catch (Exception $exception) {
-            return 'Erro ao atualizar cliente! ' . $exception->getMessage();
+            return [
+                "message" => 'Erro ao atualizar cliente! ',
+                "error" => $exception->getMessage()
+            ];
         }
     }
 
@@ -105,7 +111,10 @@ class CustomerController extends Controller
 
             return 'Cliente excluído com sucesso!';
         } catch (Exception $exception) {
-            return 'Erro ao excluir cliente! ' . $exception->getMessage();
+            return [
+                "message" => 'Erro ao excluir cliente! ',
+                "error" => $exception->getMessage()
+            ];
         }
     }
 }
