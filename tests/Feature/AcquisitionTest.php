@@ -11,7 +11,7 @@ use Tests\TestCase;
 class AcquisitionTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     /** @test */
     public function test_example(): void
     {

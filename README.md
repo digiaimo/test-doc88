@@ -1,4 +1,23 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://www.comerc.com.br/hs-fs/hubfs/2x-ComercEnergia_Logo002.png?width=400&name=2x-ComercEnergia_Logo002.png" width="300" alt="Laravel Logo"></a></p>
+
+
+## Cadastro de Clientes, Produtos e Compras
+
+Este é um projeto de cadastro de clientes, produtos e compras desenvolvido em [PHP] usando [Laravel].
+
+Funcionalidades
+Cadastro de clientes: nome, endereço, telefone, e-mail
+Cadastro de produtos: nome, preço, foto
+Cadastro de compras: cliente, produtos
+Listagem de clientes, produtos e compras
+Edição e exclusão de clientes, produtos e compras
+
+
+## Pré-requisitos
+
+[PHP] instalada
+
+[Docker] instalado
 
 ## Instalação
 
