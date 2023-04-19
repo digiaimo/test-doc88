@@ -47,7 +47,7 @@ Para executar o projeto é recomendado que se use Docker. Caso prefira não usar
 
 ## Passos para testar a API
 
-- Recomendado usar o <a href="https://docs.insomnia.rest/">Documentação do Insomnia</a>
+- Recomendado usar a <a href="https://docs.insomnia.rest/">Documentação do Insomnia</a>
 ## Cliente
 
 - `POST api/customer` criar um cliente 
