@@ -15,7 +15,7 @@ Edição e exclusão de clientes, produtos e compras
 
 ## Pré-requisitos
 
-[Docker] <a href="https://docs.docker.com/">Documentação do Docker</a>
+- [Docker] <a href="https://docs.docker.com/">Documentação do Docker</a>
 
 ## Instalação
 
