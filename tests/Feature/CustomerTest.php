@@ -4,11 +4,12 @@ namespace Tests\Feature;
 
 use App\Models\Customer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CustomerTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test */
     public function test_example(): void
     {
@@ -27,7 +28,7 @@ class CustomerTest extends TestCase
             'address' => fake()->address(),
             'complement' => null,
             'district' => fake()->city(),
-            'cep' => fake()->postcode(),               
+            'cep' => fake()->postcode(),
             'date_of_birth' => fake()->date(),
         ];
 
@@ -46,7 +47,7 @@ class CustomerTest extends TestCase
             'address' => fake()->address(),
             'complement' => null,
             'district' => fake()->city(),
-            'cep' => fake()->postcode(),               
+            'cep' => fake()->postcode(),
             'date_of_birth' => fake()->date(),
         ];
 
@@ -67,7 +68,7 @@ class CustomerTest extends TestCase
             'address' => fake()->address(),
             'complement' => null,
             'district' => fake()->city(),
-            'cep' => fake()->postcode(),               
+            'cep' => fake()->postcode(),
             'date_of_birth' => fake()->date(),
         ];
 
@@ -106,7 +107,7 @@ class CustomerTest extends TestCase
             'address' => fake()->address(),
             'complement' => null,
             'district' => fake()->city(),
-            'cep' => fake()->postcode(),               
+            'cep' => fake()->postcode(),
             'date_of_birth' => fake()->date(),
         ];
 
@@ -127,7 +128,7 @@ class CustomerTest extends TestCase
             'address' => fake()->address(),
             'complement' => null,
             'district' => fake()->city(),
-            'cep' => fake()->postcode(),               
+            'cep' => fake()->postcode(),
             'date_of_birth' => fake()->date(),
         ];
 
@@ -149,7 +150,7 @@ class CustomerTest extends TestCase
             'address' => fake()->address(),
             'complement' => null,
             'district' => fake()->city(),
-            'cep' => fake()->postcode(),               
+            'cep' => fake()->postcode(),
             'date_of_birth' => fake()->date(),
         ];
 

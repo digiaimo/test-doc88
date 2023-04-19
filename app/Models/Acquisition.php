@@ -14,7 +14,7 @@ class Acquisition extends Model
     protected $fillable = [
         'customer_id',
         'product_id',
-        'deleted_at'
+        'deleted_at',
     ];
 
     public function customer()

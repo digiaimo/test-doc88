@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class CustomerController extends Controller
@@ -46,7 +45,7 @@ class CustomerController extends Controller
             ]);
 
             return response()->json($customer, Response::HTTP_CREATED);
-        } catch (Exception $exception ) {
+        } catch (Exception $exception) {
             return response()->json(
                 'Erro ao cadastrar cliente! ',
                 Response::HTTP_BAD_REQUEST
@@ -61,7 +60,7 @@ class CustomerController extends Controller
     {
         try {
             $customer = Customer::findOrFail($id);
-            
+
             return response()->json($customer, Response::HTTP_OK);
         } catch (Exception $exception) {
             return response()->json(

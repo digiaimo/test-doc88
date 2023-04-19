@@ -4,13 +4,14 @@ namespace Tests\Feature;
 
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class ProductTest extends TestCase
 {
-   /** @test */
+    use RefreshDatabase;
+
+    /** @test */
     public function test_example(): void
     {
         $response = $this->getJson('/api/product');
@@ -50,7 +51,7 @@ class ProductTest extends TestCase
     public function should_sucecess_if_try_update_product_with_valid_data()
     {
         $id = Product::factory()->create()->id;
-        
+
         $data = [
             'name' => fake()->name(),
             'price' => fake()->randomFloat(),
@@ -66,7 +67,7 @@ class ProductTest extends TestCase
     public function should_fail_if_try_update_product_with_invalid_data()
     {
         $id = Product::factory()->create()->id;
-        
+
         $data = [
             'name' => fake()->name(),
             'price' => fake()->text(),
@@ -82,7 +83,7 @@ class ProductTest extends TestCase
     public function should_success_if_try_delete_product()
     {
         $id = Product::factory()->create()->id;
-        
+
         $response = $this->deleteJson("/api/product/{$id}");
 
         $response->assertStatus(204);
@@ -100,12 +101,12 @@ class ProductTest extends TestCase
     public function should_success_if_try_get_product()
     {
         $id = Product::factory()->create()->id;
-        
+
         $response = $this->getJson("/api/product/{$id}");
 
         $response->assertStatus(200);
     }
-    
+
     /** @test */
     public function should_fail_if_try_get_product()
     {

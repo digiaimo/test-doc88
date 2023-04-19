@@ -6,11 +6,12 @@ use App\Models\Acquisition;
 use App\Models\Customer;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AcquisitionTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test */
     public function test_example(): void
     {
@@ -44,7 +45,7 @@ class AcquisitionTest extends TestCase
             'customer_id' => 0,
             'product_id' => $productId,
         ];
-        
+
         $response = $this->postJson('/api/acquisition', $data);
 
         $response->assertStatus(400);

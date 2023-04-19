@@ -15,6 +15,6 @@ class Product extends Model
         'name',
         'price',
         'photo',
-        'deleted_at'
+        'deleted_at',
     ];
 }
